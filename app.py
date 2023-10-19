@@ -7,8 +7,6 @@ import io
 
 from tensorflow.keras.models import load_model
 
-model = load_model('models/flugVSkant.h5')
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -34,6 +32,8 @@ def upload_image():
             # Preprocess the image
             img = image.img_to_array(img)
             img = np.expand_dims(img, axis=0)
+
+            model = load_model('models/flugVSkant.h5')
 
             # Make a prediction
             prediction = model.predict(img)
